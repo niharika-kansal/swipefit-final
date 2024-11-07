@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "768675648628",
+    "project_id": "swipefit-3cf0d",
+    "storage_bucket": "swipefit-3cf0d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768675648628:android:1978024ce97da6d6ebad21",
+        "android_client_info": {
+          "package_name": "com.swipefit.clothing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0f5zDNQhExyJ6Ure5vsn6LEuvmW5fQJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
