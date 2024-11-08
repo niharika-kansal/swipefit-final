@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipefit/Screens/homepage_screen.dart';
 import 'dart:async';
- import 'package:swipefit/Screens/initial_signup_screen.dart'; 
+import 'package:swipefit/Screens/initial_signup_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -10,10 +12,13 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Automatically navigate to LoginSignUpScreen after 3 seconds with a fade transition
     Future.delayed(const Duration(seconds: 3), () {
+      final user = FirebaseAuth.instance.currentUser;
+      final targetScreen =
+          user != null ? HomepageScreen() : LoginSignUpScreen();
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => LoginSignUpScreen(),
+          pageBuilder: (context, animation, secondaryAnimation) => targetScreen,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             // Fade transition
             return FadeTransition(
@@ -26,14 +31,16 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: const Color(0xFFAF5179), // Background color as per design
+      backgroundColor:
+          const Color(0xFFAF5179), // Background color as per design
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               'images/main_logo.png',
-              width: MediaQuery.of(context).size.width * 0.36, // Responsive width
+              width:
+                  MediaQuery.of(context).size.width * 0.36, // Responsive width
             ),
             Text(
               'SwipeFit',
