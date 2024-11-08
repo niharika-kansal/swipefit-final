@@ -13,15 +13,13 @@ import 'package:swipefit/auth/signup_screen.dart';
 import 'package:swipefit/components/quantity_updater.dart';
 import 'firebase_options.dart';
 import 'Screens/productpage_screen.dart';
- 
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
-  runApp(const myApp()); 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const myApp());
 }
 
 class myApp extends StatelessWidget {
@@ -29,11 +27,6 @@ class myApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: CartPage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }
-
-
-
