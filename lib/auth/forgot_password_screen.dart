@@ -12,7 +12,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F0),
+      backgroundColor: const Color(0xFFF5F5F0),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Stack(
@@ -21,8 +21,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                margin: EdgeInsets.only(top: 40), // Add some margin from the top
-                child: Column(
+                margin: const EdgeInsets.only(top: 40), // Add some margin from the top
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -54,8 +54,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(height: 150), // Adjust the height to push the input fields down
-                    Text(
+                    const SizedBox(height: 150), // Adjust the height to push the input fields down
+                    const Text(
                       'Enter the phone number',
                       style: TextStyle(
                         fontSize: 14,
@@ -63,14 +63,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         color: Color(0xFF777777),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFD9D9D9),
+                        color: const Color(0xFFD9D9D9),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: TextField(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: const TextField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Phone number',
@@ -82,8 +82,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 24),
-                    Text(
+                    const SizedBox(height: 24),
+                    const Text(
                       'OR',
                       style: TextStyle(
                         fontSize: 15,
@@ -92,8 +92,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 24),
-                    Text(
+                    const SizedBox(height: 24),
+                    const Text(
                       'Enter the email you used to create account',
                       style: TextStyle(
                         fontSize: 14,
@@ -101,14 +101,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         color: Color(0xFF777777),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFD9D9D9),
+                        color: const Color(0xFFD9D9D9),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: TextField(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: const TextField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Email',
@@ -120,20 +120,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 32),
+                    const SizedBox(height: 32),
                     Center(
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Constants().kElevatedButtonColor),
-                          shape: MaterialStateProperty.all(
+                          backgroundColor: WidgetStateProperty.all(Constants().kElevatedButtonColor),
+                          shape: WidgetStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(48),
                             ),
                           ),
-                          padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 100, vertical: 15)),
+                          padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 100, vertical: 15)),
                         ),
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Send',
                           style: TextStyle(
                             fontSize: 22,
@@ -143,7 +143,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
