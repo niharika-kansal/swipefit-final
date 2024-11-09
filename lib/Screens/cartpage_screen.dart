@@ -5,7 +5,7 @@ import 'package:swipefit/components/quantity_updater.dart';
 class CartPage extends StatelessWidget {
 
   
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CartPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -37,11 +37,11 @@ class CartPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Subtotal section
-            Text(
+            const Text(
               'Subtotal: \$460',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             // List of cart items
             Expanded(
@@ -55,7 +55,7 @@ class CartPage extends StatelessWidget {
                     price: 205,
                     estimatedArrival: 'Oct 11-Oct 18',
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   _buildCartItem(
                     context,
                     imageUrl: 'https://example.com/dress2.jpg',
@@ -99,7 +99,7 @@ class CartPage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
 
             // Product details
             Expanded(
@@ -108,21 +108,21 @@ class CartPage extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     brand,
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'Size:',
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       DropdownButton<String>(
                         items: <String>['S', 'M', 'L', 'XL'].map((String value) {
                           return DropdownMenuItem<String>(
@@ -133,20 +133,20 @@ class CartPage extends StatelessWidget {
                         onChanged: (_) {
 
                         },
-                        hint: Text('Select a size'),
+                        hint: const Text('Select a size'),
                       ),
                     ],
                   ),
-                  SizedBox(height: 8),
-                  QuantityUpdater(), 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
+                  const QuantityUpdater(), 
+                  const SizedBox(height: 8),
                   Row(
                     children: [
-                      Icon(Icons.local_shipping, color: Colors.grey),
-                      SizedBox(width: 8),
+                      const Icon(Icons.local_shipping, color: Colors.grey),
+                      const SizedBox(width: 8),
                       Text(
                         'Estimated arrival $estimatedArrival',
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
+                        style: const TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),

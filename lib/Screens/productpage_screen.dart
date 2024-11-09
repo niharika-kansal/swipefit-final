@@ -6,6 +6,8 @@ void main() {
 }
 
 class ProductPageApp extends StatelessWidget {
+  const ProductPageApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class ProductPageApp extends StatelessWidget {
 }
 
 class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,20 +28,20 @@ class ProductPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context); 
           },
         ),
         
-        title: Text(
+        title: const Text(
           "",
           style: TextStyle(color: Colors.black),
         ),
         actions: [
            
           IconButton(
-            icon: Icon(Icons.camera_alt, color: Colors.black),
+            icon: const Icon(Icons.camera_alt, color: Colors.black),
             onPressed: () {},
           ),
         ],
@@ -59,12 +63,12 @@ class ProductPage extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               "Boucle Mini Dress-Ivory",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            Row(
+            const Row(
               children: [
                 Text(
                   "-80%",
@@ -92,12 +96,12 @@ class ProductPage extends StatelessWidget {
                 Icon(Icons.favorite_border),
               ],
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               "Size",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               children: ["S", "M", "L", "XL"]
                   .map(
@@ -111,12 +115,12 @@ class ProductPage extends StatelessWidget {
                   )
                   .toList(),
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               "Description",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               "Elegant and timeless, the Boucle Mini Dress in Ivory is the perfect blend of sophistication and comfort. Featuring a flattering off-shoulder neckline and a soft pleated skirt, this dress is designed to create a chic, feminine silhouette. Made from ...",
               style: TextStyle(fontSize: 14, color: Colors.grey[600]),
@@ -125,11 +129,11 @@ class ProductPage extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {},
-                child: Text("Read more"),
+                child: const Text("Read more"),
               ),
             ),
-            SizedBox(height: 16),
-            Row(
+            const SizedBox(height: 16),
+            const Row(
               children: [
                 Text(
                   "Quantity:",
@@ -147,23 +151,23 @@ class ProductPage extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey[300],
-                      padding: EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Add to cart",
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pinkAccent,
-                      padding: EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Buy now",
                       style: TextStyle(color: Colors.white),
                     ),

@@ -33,9 +33,9 @@ class _QuantityUpdaterState extends State<QuantityUpdater> {
   Widget build(BuildContext context) {
     return  Row(
       children: [
-IconButton(onPressed: _decreaseQuantity, icon: Icon(Icons.remove)), 
+IconButton(onPressed: _decreaseQuantity, icon: const Icon(Icons.remove)), 
         Text(quantity.toString()), 
-        IconButton(onPressed: _increaseQuantity, icon: Icon(Icons.add))
+        IconButton(onPressed: _increaseQuantity, icon: const Icon(Icons.add))
       ],
     ); 
   }

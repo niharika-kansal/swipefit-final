@@ -1,4 +1,4 @@
-package com.example.swipefit
+package com.swipefit.clothing
 
 import io.flutter.embedding.android.FlutterActivity
 
