@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swipefit/components/bottom_navbar.dart';
 
 class LikedPage extends StatelessWidget {
-  const LikedPage({Key? key}) : super(key: key);
+  const LikedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +11,17 @@ class LikedPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
+        title: const Text(
           'Liked',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.favorite, color: Colors.pink),
+            icon: const Icon(Icons.favorite, color: Colors.pink),
             onPressed: () {},
           ),
         ],
@@ -38,7 +38,7 @@ class LikedPage extends StatelessWidget {
               price: 205,
               rating: 4.5,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildLikedItem(
               context,
               imageUrl: 'https://example.com/dress2.jpg',
@@ -79,7 +79,7 @@ class LikedPage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
 
             // Product details
             Expanded(
@@ -88,20 +88,20 @@ class LikedPage extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     brand,
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         '\$$price',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       // "Buy Now" button
                       ElevatedButton(
@@ -112,16 +112,16 @@ class LikedPage extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Buy now',
                           style: TextStyle(color: Colors.pink),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   // Rating stars
                   Row(
                     children: List.generate(5, (index) {

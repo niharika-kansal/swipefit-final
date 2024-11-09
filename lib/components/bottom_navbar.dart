@@ -29,25 +29,25 @@ class _BottomNavbarState extends State<BottomNavbar> {
                case 0:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomepageScreen()),
+              MaterialPageRoute(builder: (context) => const HomepageScreen()),
             );
             break;
           case 1:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CartPage()),
+              MaterialPageRoute(builder: (context) => const CartPage()),
             );
             break;
           case 2:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => LikedPage()),
+              MaterialPageRoute(builder: (context) => const LikedPage()),
             );
             break;
           case 3:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
             );
             break;
           default:
@@ -58,26 +58,26 @@ class _BottomNavbarState extends State<BottomNavbar> {
   } , 
         currentIndex: widget.currIdx,
         items: [ BottomBarItem(
-      icon: FaIcon(FontAwesomeIcons.house, size: 20,),
+      icon: const FaIcon(FontAwesomeIcons.house, size: 20,),
       title: const Text('Home'),
-      backgroundColor: Color(0xFFFF84B8),
+      backgroundColor: const Color(0xFFFF84B8),
       
        
     ),
     BottomBarItem(
-      icon: FaIcon(FontAwesomeIcons.cartShopping, size: 20,),
+      icon: const FaIcon(FontAwesomeIcons.cartShopping, size: 20,),
       title: const Text('Cart'),
-      backgroundColor: Color(0xFFFF84B8),
+      backgroundColor: const Color(0xFFFF84B8),
     ),
     BottomBarItem(
-      icon: FaIcon(FontAwesomeIcons.heart, size: 20,),
+      icon: const FaIcon(FontAwesomeIcons.heart, size: 20,),
       title: const Text('Like'),
-      backgroundColor: Color(0xFFFF84B8),
+      backgroundColor: const Color(0xFFFF84B8),
     ),
      BottomBarItem(
-      icon: Icon(Icons.person, size: 25,),
+      icon: const Icon(Icons.person, size: 25,),
       title: const Text('Profile'),
-      backgroundColor: Color(0xFFFF84B8),
+      backgroundColor: const Color(0xFFFF84B8),
     ),
     ],   option: BubbleBarOptions(
      

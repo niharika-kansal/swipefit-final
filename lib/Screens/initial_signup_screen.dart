@@ -39,10 +39,10 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   // color: Colors.red,
                   height: 450,
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -62,7 +62,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                        MaterialPageRoute(builder: (context) => const LoginScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -86,7 +86,7 @@ class _LoginSignUpScreenState extends State<LoginSignUpScreen> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return SignUpScreen();
+                      return const SignUpScreen();
                     }));
                   },
                   style: ElevatedButton.styleFrom(

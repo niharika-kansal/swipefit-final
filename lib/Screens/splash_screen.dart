@@ -14,7 +14,7 @@ class SplashScreen extends StatelessWidget {
     Future.delayed(const Duration(seconds: 3), () {
       final user = FirebaseAuth.instance.currentUser;
       final targetScreen =
-          user != null ? HomepageScreen() : LoginSignUpScreen();
+          user != null ? const HomepageScreen() : const LoginSignUpScreen();
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
