@@ -9,7 +9,7 @@ import 'package:swipefit/components/bottom_navbar.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:swipefit/components/swiping_component.dart';
-import 'package:swipefit/networking/network_helper.dart';
+import 'package:swipefit/handlers/network_handler.dart';
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({super.key});
