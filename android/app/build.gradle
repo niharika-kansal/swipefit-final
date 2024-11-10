@@ -40,6 +40,11 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+
+    dependencies {
+    implementation 'com.razorpay:checkout:1.6.21' // Check for the latest version on Razorpay's documentation
+}
 }
 
 flutter {

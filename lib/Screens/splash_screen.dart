@@ -38,7 +38,7 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/main_logo.png',
+              'assets/images/logo_upscaled.png',
               width:
                   MediaQuery.of(context).size.width * 0.36, // Responsive width
             ),
