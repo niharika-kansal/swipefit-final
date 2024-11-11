@@ -1,11 +1,13 @@
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class RazorpayService {
   final Razorpay _razorpay = Razorpay();
+  final int amount;
 
-  RazorpayService() {
+  RazorpayService({required this.amount}) {
     // Set up Razorpay event listeners
+
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
@@ -14,14 +16,10 @@ class RazorpayService {
   void openCheckout() {
     var options = {
       'key': 'rzp_live_0O7o5xi0wjOfEv', // Replace with your actual API Key
-      'amount':
-          200, // Amount in the smallest currency unit (e.g., paise for INR)
+      'amount': amount *
+          100, // Amount in the smallest currency unit (e.g., paise for INR)
       'name': 'SwipeFit',
       'description': 'Purchase description',
-      'prefill': {
-        'contact': '7973252563',
-        'email': 'ahujaarmaan7777@gmail.com'
-      },
     };
 
     try {

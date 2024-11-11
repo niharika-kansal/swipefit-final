@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:swipefit/components/likedpage_product_component.dart';
 import 'package:swipefit/components/quantity_updater.dart';
 import 'package:swipefit/components/size_selector.dart';
 import 'package:swipefit/handlers/payment_handler.dart';
+import 'package:swipefit/providers/like_provider.dart';
 
 class ProductPage extends StatefulWidget {
   final Widget imageWidget;
@@ -9,15 +12,16 @@ class ProductPage extends StatefulWidget {
   final String description;
   final double rating;
   final double price;
+  final String Category;
 
-  ProductPage({
-    super.key,
-    required this.imageWidget,
-    required this.title,
-    required this.description,
-    required this.rating,
-    required this.price,
-  });
+  const ProductPage(
+      {super.key,
+      required this.imageWidget,
+      required this.title,
+      required this.description,
+      required this.rating,
+      required this.price,
+      required this.Category});
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -31,6 +35,7 @@ class _ProductPageState extends State<ProductPage> {
   late String _description;
   late int _rating;
   late double _price;
+  late String _category;
 
   @override
   void initState() {
@@ -40,6 +45,16 @@ class _ProductPageState extends State<ProductPage> {
     _description = widget.description;
     _rating = widget.rating.toInt();
     _price = widget.price;
+    _category = widget.Category;
+  }
+
+  LikedpageProductComponent _buildLikedPageComponent() {
+    return LikedpageProductComponent(
+        price: _price,
+        productCategory: _category,
+        productImage: _imageWidget,
+        productTitle: _title,
+        rating: _rating);
   }
 
   List<Widget> _buildStars() {
@@ -85,10 +100,10 @@ class _ProductPageState extends State<ProductPage> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Container(
-                  child: _imageWidget,
+                child: SizedBox(
                   height: MediaQuery.of(context).size.width * 0.6,
                   width: double.infinity,
+                  child: _imageWidget,
                 ),
               ),
               const SizedBox(height: 10),
@@ -101,7 +116,7 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   const SizedBox(width: 8),
                   Text(
-                    'Rs.$_price',
+                    'Rs.${_price.round()}',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -116,6 +131,16 @@ class _ProductPageState extends State<ProductPage> {
                     onPressed: () {
                       setState(() {
                         favorite = !favorite;
+                        // final likeProvider =
+                        //     Provider.of<LikeProvider>(context, listen: false);
+                        // final LikedpageProductComponent widget =
+                        //     _buildLikedPageComponent();
+                        // if (favorite) {
+                        //   likeProvider.addItem(widget); // Add to liked items
+                        // } else {
+                        //   likeProvider
+                        //       .removeItem(widget); // Remove from liked items
+                        // }
                       });
                     },
                     icon: favorite
@@ -190,7 +215,8 @@ class _ProductPageState extends State<ProductPage> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        RazorpayService razorpayService = RazorpayService();
+                        RazorpayService razorpayService =
+                            RazorpayService(amount: _price.round());
                         razorpayService.openCheckout();
                       },
                       style: ElevatedButton.styleFrom(

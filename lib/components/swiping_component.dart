@@ -4,7 +4,9 @@ import 'package:swipe_cards/draggable_card.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 import 'package:swipefit/Screens/productpage_screen.dart';
 import 'package:swipefit/components/cartpage_product_component.dart';
+import 'package:swipefit/components/likedpage_product_component.dart';
 import 'package:swipefit/providers/cart_provider.dart';
+import 'package:swipefit/providers/like_provider.dart';
 
 class ImageSwiper extends StatefulWidget {
   final Map response;
@@ -66,6 +68,7 @@ class _ImageSwiperState extends State<ImageSwiper> {
                 description: description,
                 price: price,
                 rating: rating,
+                Category: category,
               );
             }));
           },
@@ -105,7 +108,7 @@ class _ImageSwiperState extends State<ImageSwiper> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0xFFFF84B8).withOpacity(0.8),
+                        const Color(0xFFFF84B8).withOpacity(0.8),
                         Colors.black.withOpacity(0.7),
                       ],
                       begin: Alignment.bottomLeft,
@@ -114,7 +117,7 @@ class _ImageSwiperState extends State<ImageSwiper> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    '$title - \$$price',
+                    '$title - Rs.${price.round()}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -127,8 +130,20 @@ class _ImageSwiperState extends State<ImageSwiper> {
           ),
         ),
         likeAction: () {
+          final likeProvider =
+              Provider.of<LikeProvider>(context, listen: false);
+          final likedItem = LikedpageProductComponent(
+            price: price,
+            productCategory: category,
+            productImage: imageWidget,
+            productTitle: title,
+            rating: rating.toInt(),
+          );
+
+          likeProvider.addItem(likedItem);
+
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Liked $title"),
+            content: Text("Added $title to cart"),
             duration: const Duration(milliseconds: 500),
           ));
         },

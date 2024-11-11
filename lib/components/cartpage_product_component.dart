@@ -9,7 +9,8 @@ class CartpageProductComponent extends StatelessWidget {
   final double price;
   final VoidCallback? onRemove;
 
-  CartpageProductComponent({
+  const CartpageProductComponent({
+    super.key,
     required this.productImage,
     required this.productCategory,
     required this.productTitle,
@@ -28,7 +29,7 @@ class CartpageProductComponent extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Container(
+              child: SizedBox(
                 width: 80,
                 height: 80,
                 child: productImage,
@@ -50,19 +51,19 @@ class CartpageProductComponent extends StatelessWidget {
                     style: const TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 8),
-                  Text('Price: \$${price.toStringAsFixed(2)}'),
-                  Row(
+                  Text('Price: Rs.${price.round()}'),
+                  const Row(
                     children: [
-                      const Text(
+                      Text(
                         'Size:',
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       SizeSelector()
                     ],
                   ),
                   const SizedBox(height: 8),
-                  QuantityUpdater(),
+                  const QuantityUpdater(),
                   if (onRemove != null) // Only show remove button if provided
                     IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
