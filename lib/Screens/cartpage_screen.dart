@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:swipefit/components/bottom_navbar.dart';
 import 'package:swipefit/components/cartpage_product_component.dart';
 import 'package:swipefit/providers/cart_provider.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({super.key});
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +42,9 @@ class CartPage extends StatelessWidget {
             Consumer<CartProvider>(
               builder: (context, cartProvider, child) {
                 // final subtotal = cartProvider.calculateSubtotal();
-                final subtotal = 200;
+                const subtotal = 200;
                 return Text(
-                  'Subtotal: \$${subtotal.toStringAsFixed(2)}',
+                  'Subtotal: Rs.${subtotal.round()}',
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 );
@@ -56,8 +57,16 @@ class CartPage extends StatelessWidget {
               child: Consumer<CartProvider>(
                 builder: (context, cartProvider, child) {
                   if (cartProvider.cartItems.isEmpty) {
-                    return const Center(
-                      child: Text("Your cart is empty"),
+                    return Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset('assets/lottie/girl_empty.json'),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text('Your cart is empty :(')
+                          ]),
                     );
                   }
                   return ListView.builder(

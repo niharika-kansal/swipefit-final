@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swipefit/components/bottom_navbar.dart';
+import 'package:swipefit/providers/like_provider.dart';
+import 'package:lottie/lottie.dart';
 
-class LikedPage extends StatelessWidget {
+class LikedPage extends StatefulWidget {
   const LikedPage({super.key});
 
+  @override
+  State<LikedPage> createState() => _LikedPageState();
+}
+
+class _LikedPageState extends State<LikedPage> {
+  bool isLiked = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,125 +30,78 @@ class LikedPage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.favorite, color: Colors.pink),
-            onPressed: () {},
+            icon: Icon(
+              // Change the heart icon based on whether likedItems is empty or not
+              Provider.of<LikeProvider>(context).likedItems.isEmpty
+                  ? Icons.favorite_border
+                  : Icons.favorite,
+              color: Colors.pink,
+            ),
+            onPressed: () {
+              Provider.of<LikeProvider>(context, listen: false).clearList();
+            },
           ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            _buildLikedItem(
-              context,
-              imageUrl: 'https://example.com/dress1.jpg',
-              title: 'Boucle Mini Dress-Ivory',
-              brand: 'Meshki',
-              price: 205,
-              rating: 4.5,
-            ),
-            const SizedBox(height: 16),
-            _buildLikedItem(
-              context,
-              imageUrl: 'https://example.com/dress2.jpg',
-              title: 'Lilou Ivory Ruffle Dress',
-              brand: 'House of CB',
-              price: 255,
-              rating: 4.8,
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar:BottomNavbar(currIdx: 2),
-    );
-  }
-
-  Widget _buildLikedItem(
-    BuildContext context, {
-    required String imageUrl,
-    required String title,
-    required String brand,
-    required double price,
-    required double rating,
-  }) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Product image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                imageUrl,
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(width: 16),
-
-            // Product details
+            // List of liked items
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    brand,
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '\$$price',
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      // "Buy Now" button
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor
-                          : Colors.pink[100],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Consumer<LikeProvider>(
+                builder: (context, likeProvider, child) {
+                  if (likeProvider.likedItems.isEmpty) {
+                    return Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset('assets/lottie/not-found.json'),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text('You didn\'t like anything :(')
+                          ]),
+                    );
+                  }
+                  return ListView.builder(
+                    itemCount: likeProvider.likedItems.length,
+                    itemBuilder: (context, index) {
+                      final item = likeProvider.likedItems[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: Stack(
+                          children: [
+                            // Display the liked item
+                            item,
+
+                            // Heart icon in the top-left corner
+                            Positioned(
+                                top: 8,
+                                left: 8,
+                                child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        likeProvider.removeItem(item);
+                                      });
+                                    },
+                                    icon: const Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    ))),
+                          ],
                         ),
-                        child: const Text(
-                          'Buy now',
-                          style: TextStyle(color: Colors.pink),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  // Rating stars
-                  Row(
-                    children: List.generate(5, (index) {
-                      return Icon(
-                        index < rating.round()
-                            ? Icons.star
-                            : Icons.star_border,
-                        color: Colors.orange,
-                        size: 20,
                       );
-                    }),
-                  ),
-                ],
+                    },
+                  );
+                },
               ),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavbar(currIdx: 2),
     );
   }
 }

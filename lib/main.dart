@@ -5,6 +5,7 @@ import 'package:swipefit/Screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:swipefit/providers/cart_provider.dart';
+import 'package:swipefit/providers/like_provider.dart';
 
 import 'firebase_options.dart';
 
@@ -17,8 +18,9 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => LikeProvider())
       ],
-      child: myApp(),
+      child: const myApp(),
     ),
   );
 }

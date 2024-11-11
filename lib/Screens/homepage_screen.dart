@@ -1,13 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:swipefit/Screens/initial_signup_screen.dart';
 import 'package:swipefit/components/bottom_navbar.dart';
 
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:swipefit/components/swiping_component.dart';
 import 'package:swipefit/handlers/network_handler.dart';
 
