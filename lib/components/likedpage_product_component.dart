@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:swipefit/Screens/productpage_screen.dart';
 import 'package:swipefit/handlers/payment_handler.dart';
 
 class LikedpageProductComponent extends StatelessWidget {

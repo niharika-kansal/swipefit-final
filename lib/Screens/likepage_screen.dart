@@ -58,10 +58,10 @@ class _LikedPageState extends State<LikedPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Lottie.asset('assets/lottie/not-found.json'),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
-                            Text('You didn\'t like anything :(')
+                            const Text('You didn\'t like anything :(')
                           ]),
                     );
                   }

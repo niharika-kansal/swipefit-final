@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_cards/draggable_card.dart';
@@ -21,13 +22,19 @@ class _ImageSwiperState extends State<ImageSwiper> {
   Key _swiperKey = UniqueKey();
   late MatchEngine _matchEngine;
   final List<SwipeItem> _swipeItems = [];
-
+  late String imageURL;
+  late int productId;
+  // Get the current user ID
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? get userId => _auth.currentUser?.uid;
   void _populateSwipeItems() {
     _swipeItems.clear();
 
     for (int i = 0; i < _products.length; i++) {
       final product = _products[i];
       final imageUrl = product['images'][0];
+      imageURL = product['images'][0];
+      productId = product['id'];
       final title = product['title'];
       final double price = product['price'];
       final description = product['description'];
@@ -74,29 +81,6 @@ class _ImageSwiperState extends State<ImageSwiper> {
           },
           child: Stack(
             children: [
-              // Image.network(
-              //   imageUrl,
-              //   fit: BoxFit.cover,
-              //   width: double.infinity,
-              //   height: double.infinity,
-              //   loadingBuilder: (BuildContext context, Widget child,
-              //       ImageChunkEvent? loadingProgress) {
-              //     if (loadingProgress == null) return child;
-              //     return Center(
-              //       child: CircularProgressIndicator(
-              //         value: loadingProgress.expectedTotalBytes != null
-              //             ? loadingProgress.cumulativeBytesLoaded /
-              //                 loadingProgress.expectedTotalBytes!
-              //             : null,
-              //       ),
-              //     );
-              //   },
-              //   errorBuilder: (context, error, stackTrace) {
-              //     return const Center(
-              //       child: Icon(Icons.error, color: Colors.red),
-              //     );
-              //   },
-              // ),
               imageWidget,
               Positioned(
                 bottom: 10,
@@ -158,6 +142,10 @@ class _ImageSwiperState extends State<ImageSwiper> {
           final cartProvider =
               Provider.of<CartProvider>(context, listen: false);
           final cartItem = CartpageProductComponent(
+            userId: userId ?? '',
+            productId: productId,
+            productURL: imageURL,
+            quantity: 1,
             productImage: imageWidget,
             productCategory: category, // Use actual category if available
             productTitle: title,

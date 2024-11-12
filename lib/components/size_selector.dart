@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 
 class SizeSelector extends StatefulWidget {
-  const SizeSelector({super.key});
+  final Function(String) onSizeSelected;
+
+  const SizeSelector({Key? key, required this.onSizeSelected})
+      : super(key: key);
 
   @override
   State<SizeSelector> createState() => _SizeSelectorState();
 }
 
 class _SizeSelectorState extends State<SizeSelector> {
-  String? selectedSize;
+  String _selectedSize = 'M';
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      value: selectedSize,
+      value: _selectedSize,
       items: <String>['S', 'M', 'L', 'XL'].map((String value) {
         return DropdownMenuItem<String>(
           value: value,
@@ -22,8 +25,9 @@ class _SizeSelectorState extends State<SizeSelector> {
       }).toList(),
       onChanged: (String? newValue) {
         setState(() {
-          selectedSize = newValue;
+          _selectedSize = newValue ?? 'M';
         });
+        widget.onSizeSelected(_selectedSize); // Notify parent of selected size
       },
       hint: const Text('Select a size'),
     );

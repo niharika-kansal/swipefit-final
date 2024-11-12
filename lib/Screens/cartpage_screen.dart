@@ -62,10 +62,10 @@ class CartPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Lottie.asset('assets/lottie/girl_empty.json'),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
-                            Text('Your cart is empty :(')
+                            const Text('Your cart is empty :(')
                           ]),
                     );
                   }
