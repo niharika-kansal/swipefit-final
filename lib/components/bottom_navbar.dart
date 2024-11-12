@@ -32,7 +32,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             case 1:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CartPage()),
+                MaterialPageRoute(builder: (context) => const CartPage()),
               );
               break;
             case 2:
