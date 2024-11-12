@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swipefit/auth/login_page_screen.dart';
-import 'package:swipefit/auth/login_page_screen.dart';
 import 'package:swipefit/auth/signup_screen.dart';
 
 class LoginSignUpScreen extends StatefulWidget {

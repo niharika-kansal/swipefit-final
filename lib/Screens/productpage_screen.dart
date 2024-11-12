@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:swipefit/components/likedpage_product_component.dart';
 import 'package:swipefit/components/quantity_updater.dart';
 import 'package:swipefit/components/size_selector.dart';
 import 'package:swipefit/handlers/payment_handler.dart';
-import 'package:swipefit/providers/like_provider.dart';
 
 class ProductPage extends StatefulWidget {
   final Widget imageWidget;
@@ -14,14 +12,15 @@ class ProductPage extends StatefulWidget {
   final double price;
   final String Category;
 
-  const ProductPage(
-      {super.key,
-      required this.imageWidget,
-      required this.title,
-      required this.description,
-      required this.rating,
-      required this.price,
-      required this.Category});
+  const ProductPage({
+    super.key,
+    required this.imageWidget,
+    required this.title,
+    required this.description,
+    required this.rating,
+    required this.price,
+    required this.Category,
+  });
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -36,6 +35,8 @@ class _ProductPageState extends State<ProductPage> {
   late int _rating;
   late double _price;
   late String _category;
+  String _selectedSize = 'M'; // Store the selected size
+  int _quantity = 1; // Store the selected quantity
 
   @override
   void initState() {
@@ -50,11 +51,12 @@ class _ProductPageState extends State<ProductPage> {
 
   LikedpageProductComponent _buildLikedPageComponent() {
     return LikedpageProductComponent(
-        price: _price,
-        productCategory: _category,
-        productImage: _imageWidget,
-        productTitle: _title,
-        rating: _rating);
+      price: _price,
+      productCategory: _category,
+      productImage: _imageWidget,
+      productTitle: _title,
+      rating: _rating,
+    );
   }
 
   List<Widget> _buildStars() {
@@ -66,6 +68,20 @@ class _ProductPageState extends State<ProductPage> {
       stars.add(const Icon(Icons.star_border, color: Colors.orange));
     }
     return stars;
+  }
+
+  // Function to handle size selection
+  void _onSizeSelected(String size) {
+    setState(() {
+      _selectedSize = size; // Update the selected size
+    });
+  }
+
+  // Function to handle quantity update
+  void _onQuantityChanged(int newQuantity) {
+    setState(() {
+      _quantity = newQuantity; // Update the quantity
+    });
   }
 
   @override
@@ -131,16 +147,7 @@ class _ProductPageState extends State<ProductPage> {
                     onPressed: () {
                       setState(() {
                         favorite = !favorite;
-                        // final likeProvider =
-                        //     Provider.of<LikeProvider>(context, listen: false);
-                        // final LikedpageProductComponent widget =
-                        //     _buildLikedPageComponent();
-                        // if (favorite) {
-                        //   likeProvider.addItem(widget); // Add to liked items
-                        // } else {
-                        //   likeProvider
-                        //       .removeItem(widget); // Remove from liked items
-                        // }
+                        // Toggle favorite logic
                       });
                     },
                     icon: favorite
@@ -161,7 +168,9 @@ class _ProductPageState extends State<ProductPage> {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
-              const SizeSelector(),
+              SizeSelector(
+                onSizeSelected: _onSizeSelected,
+              ), // Pass the callback here
               const SizedBox(height: 16),
               const Text(
                 "Description",
@@ -186,21 +195,28 @@ class _ProductPageState extends State<ProductPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     "Quantity:",
                     style: TextStyle(fontSize: 16),
                   ),
-                  SizedBox(width: 8),
-                  QuantityUpdater()
+                  const SizedBox(width: 8),
+                  QuantityUpdater(
+                    initialQuantity: _quantity,
+                    onQuantityChanged: _onQuantityChanged,
+                  ),
                 ],
               ),
+              const SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Add to cart logic here
+                        // You can pass the selected size and quantity
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey[300],
                         padding: const EdgeInsets.symmetric(vertical: 16),
